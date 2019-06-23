@@ -3,13 +3,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongojs = require('mongojs');
 
-const employees = require('./src/controllers/employees');
-const attendance  = require('./src/controllers/attendance');
-const calculate = require('./src/controllers/calculate');
-const shift = require('./src/controllers/shifts');
-const routes = require('./src/routes/index');
-const rosterShift = require('./src/controllers/rosterShift');
-const users = require('./src/controllers/users');
+const employees = require('./server/controllers/employees');
+const attendance  = require('./server/controllers/attendance');
+const calculate = require('./server/controllers/calculate');
+const shift = require('./server/controllers/shifts');
+const routes = require('./server/routes/index');
+const rosterShift = require('./server/controllers/rosterShift');
+const users = require('./server/controllers/users');
 
 const app = express();
 
@@ -25,11 +25,11 @@ app.use(function(req,res,next) {
 
 //routes(express, app, {})
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/client/dist/shiftcalc'));
+app.use(express.static(__dirname + '/dist/shiftcalc'));
 
 app.get('/*', function(req,res) {
     
-res.sendFile(path.join(__dirname+'/client/dist/shiftcalc/index.html'));
+res.sendFile(path.join(__dirname+'/dist/shiftcalc/index.html'));
 });
 
 app.use(bodyParser.json());
