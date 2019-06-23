@@ -1,0 +1,75 @@
+<app-header></app-header>
+<div class="contanier-fluid shadow p-3 mb-5 bg-white rounded">
+	<button class="btn btn-primary" disabled *ngIf="loading">
+		<span class="spinner-border spinner-border-sm"></span>
+		Loading..
+	</button>
+	<div class="row" *ngIf="!loading">
+		<div class="col-md-3">
+			<div class="card profile">
+			  <!-- <img src="./assets/profile.jpg" class="card-img-top profile_image" alt="..."> -->
+			  <div class="card-body" *ngIf="isEmployeeDisplayed">
+			    <p class="card-text">Hello {{thisEmployeeData.name}}</p>
+			  </div>
+			</div>
+			<nav>
+			  <!-- Links -->
+			  <ul class="list-group list-group-flush">
+			    <li class="list-group-item list-group-item-action">
+			      <button class="btn btn-primary-outline" (click)="addemployee()">Add New Employee</button>
+			    </li>
+			    <li class="list-group-item list-group-item-action" *ngIf="showAddUsers">
+			      <button class="btn btn-primary-outline" (click)="addUser()">Add New Manager/Supervisor</button>
+			    </li>
+			    <li class="list-group-item list-group-item-action">
+			      <button class="btn btn-primary-outline" (click)="calulateAll()">Calculate For All</button>
+			    </li>
+			  </ul>
+			</nav>
+		</div>
+		<div class="col-md-9">
+			<div class="table-responsive">
+				<div *ngIf="noUser" class="alert alert-danger">
+			        <strong>No Employee listed</strong>
+			    </div>
+			    <div *ngIf="serverError" class="alert alert-danger">
+			        <strong>Server Error</strong>
+			    </div>
+			    <div *ngIf="isEmployeeDisplayed">
+				<div class="form-group has-search">
+				    <span class="fa fa-search form-control-feedback"></span>
+				    <input type="text" class="form-control" placeholder="Search" name="search" [(ngModel)]="filter">
+				</div>
+			    <table class="table table-striped">
+				    <thead>
+				        <tr>
+				        	<th>#</th>
+				          <th (click)="sort('name')">Name
+				          	<span *ngIf="key =='name'" [ngClass]="[reverse ? 'fas fa-angle-double-down' : 'fas fa-angle-double-up']"></span>
+				          </th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    	<tr *ngFor="let l of finalList| orderBy: key : reverse| filter:filter| paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+				    		<td>{{i+1}}</td>
+				    		<td (click)="goToUser(l._id)">{{l.name}}</td>
+				    	</tr>
+				    </tbody>
+				</table>
+				<pagination-controls (pageChange)="p = $event"></pagination-controls>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="col-md-2 showDiv">
+			<div class="form-group">
+				<button type="button" class="btn btn-primary" (click)="addemployee()">Add New Individual Employee</button>
+			</div>
+			<div class="form-group" *ngIf="showAddUsers">
+				<button type="button" class="btn btn-light" (click)="addUser()">Add New Manager/Supervisor</button>
+			</div>
+			<div class="form-group">
+				<button type="button" class="btn btn-primary" (click)="calulateAll()">Calculate For All</button>
+			</div>
+		</div> -->
+	</div>
+</div>

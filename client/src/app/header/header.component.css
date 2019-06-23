@@ -1,0 +1,19 @@
+.header {
+	background-color: #00b7ef;
+	height: 60px;
+}
+.home {
+	width: 60px;
+	height: 35px;
+}
+.logout{
+	width: 35px;
+	height: 33px;	
+}
+.heading{
+	margin-top: 10px;
+	font-family : "Karla", Sans-serif;
+	font-weight: 600;
+	color: white;
+	font-size: 28px;
+}
