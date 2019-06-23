@@ -32,7 +32,7 @@ export class EmployeeService {
     'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('token'))
   	});
   	let options = new RequestOptions({headers: headers});
-  	return this._http.put(this.baseUrl +'api/attendance/' + data._id , data, options)
+  	return this._http.put('api/attendance/' + data._id , data, options)
   				.map(res => res.json())
   				.catch(this.HandleError)
   }
@@ -43,7 +43,7 @@ export class EmployeeService {
     'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       });
      let options = new RequestOptions({headers: headers});
-     return this._http.get(this.baseUrl +`api/shift/${id}`, options)
+     return this._http.get(`api/shift/${id}`, options)
               .map(res => res.json())
               .catch(this.HandleError)
   }

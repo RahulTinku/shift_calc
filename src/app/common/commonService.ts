@@ -42,7 +42,7 @@ export class CommonService {
     'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('token'))
 		});
 		let options = new RequestOptions({headers : headers});
-		return this._http.get(this.baseUrl + 'api/shifts', options)
+		return this._http.get('api/shifts', options)
 					.map(res => res.json())
 					.catch(this.HandleError)
 	}
@@ -53,7 +53,7 @@ export class CommonService {
     'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('token'))
 		});
 		let options = new RequestOptions({headers : headers});
-		return this._http.get(this.baseUrl +'api/getMangers', options)
+		return this._http.get('api/getMangers', options)
 					.map(res => res.json())
 					.catch(this.HandleError)		
 	}
@@ -64,7 +64,7 @@ export class CommonService {
     'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('token'))
 		});
 		let options = new RequestOptions({headers : headers});
-		return this._http.get(this.baseUrl +'api/allowance', options)
+		return this._http.get('api/allowance', options)
 					.map(res => res.json())
 					.catch(this.HandleError)				
 	}
@@ -74,7 +74,7 @@ export class CommonService {
 			'Content-Type' : 'application/json'
 		});
 		let options = new RequestOptions({headers : headers});
-		return this._http.post(this.baseUrl +'api/login',loginInfo, options)
+		return this._http.post('api/login',loginInfo, options)
 					.map(res => res.json())
 					.catch(this.HandleError)		
 	}

@@ -17,7 +17,7 @@ export class AdduserService {
     'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('token'))
   	});
   	let options = new RequestOptions({headers : header})
-  	return this._http.post(this.baseUrl + 'api/adduser', data, options)
+  	return this._http.post('api/adduser', data, options)
   					.map(res => res.json())
   					.catch(this.HandleError)
   }
@@ -28,7 +28,7 @@ export class AdduserService {
     'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('token'))
     });
     let options = new RequestOptions({headers : header})
-    return this._http.post(this.baseUrl + 'api/addloginuser', data, options)
+    return this._http.post('api/addloginuser', data, options)
         .map(res => res.json())
         .catch(this.HandleError)
   }

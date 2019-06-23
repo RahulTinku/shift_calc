@@ -20,7 +20,7 @@ export class ListEmployeeService {
     'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('token'))
 	});
 	const options = new RequestOptions({headers: headers});
-  	return this._http.get(this.baseUrl+`api/employeeList/${manager_id}`, options)
+  	return this._http.get(`api/employeeList/${manager_id}`, options)
   		.map((res:any) => res.json())
   		.catch(this.HandleError)
   }
@@ -31,7 +31,7 @@ export class ListEmployeeService {
     'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('token'))
 		});
 	  const options = new RequestOptions({headers: headers});
-  	return this._http.get(this.baseUrl+`api/employee/${_id}`, options)
+  	return this._http.get(`api/employee/${_id}`, options)
   		  		.map((res:any) => res.json())
   				.catch(this.HandleError)
   }
@@ -42,7 +42,7 @@ export class ListEmployeeService {
     'Authorization' : 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       });
       const options = new RequestOptions({headers: headers});
-      return this._http.get(this.baseUrl+`api/calculate/${id}`, options)
+      return this._http.get(`api/calculate/${id}`, options)
               .map((res:any) => res.json())
               .catch(this.HandleError)   
   }
